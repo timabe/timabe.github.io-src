@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        {% if not page and not article %}
+        <meta name="author" content="{{ AUTHOR }}" />
+        <meta name="copyright" content="{{ AUTHOR }}" />
+        {% if SITE_DESCRIPTION %}
+        <meta name="description" content="{% block head_description %}{{ SITE_DESCRIPTION }}{% endblock head_description %}" />
+        {% endif %}
+        {% endif %}
+        {% block meta_tags_in_head %}
+        {% endblock meta_tags_in_head %}
+        <meta name="robots" content="{% block robots %}index,follow{% endblock %}">
+
+        <link rel="stylesheet" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" type="text/css" />
+        {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+        {% endif %}
+        {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+        {% endif %}
+
+</head>
+
+<body id="index" class="home">
+    <div class="logo"></div>
+{% include 'github.html' %}
+        <header id="banner" class="body">
+                <h1><a href="{{ SITEURL }}">{{ SITENAME }} {% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></h1>
+                {% if SITETAGLINE %}
+                <div id="tagline">{{SITETAGLINE}}</div>
+                {% endif %}
+                <nav>
+
+                {% if DISPLAY_PAGES_ON_MENU %}
+                {% for page in PAGES %}
+                    <a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>&nbsp;
+                {% endfor %}
+                {% endif %}
+                {% for cat, null in categories %}
+                    <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>&nbsp;
+                {% endfor %}
+                {% for title, link in MENUITEMS %}
+                    <a href="{{ link }}">{{ title }}</a>&nbsp;
+                {% endfor %}
+                </nav>
+        </header><!-- /#banner -->
+        {% block content %}
+        {% endblock %}
+        <section id="extras" class="body">
+        {% if LINKS %}
+        {% endif %}
+        {% if SOCIAL %}
+                <div class="social">
+                    <ul>
+                        {% if FEED_RSS %}
+                        <li><a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate">rss feed</a></li>
+                        {% endif %}
+
+                    {% for name, link in SOCIAL %}
+                        <li><a href="{{ link }}">{{ name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </div><!-- /.social -->
+        {% endif %}
+        </section><!-- /#extras -->
+
+
+
+{% include 'analytics.html' %}
+{% include 'piwik.html' %}
+{% include 'disqus_script.html' %}
+</body>
+</html>

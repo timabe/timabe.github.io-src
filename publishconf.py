@@ -10,7 +10,7 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'https://timabe.github.io'
+SITEURL = 'http://timabe.me'
 RELATIVE_URLS = True
 
 DELETE_OUTPUT_DIRECTORY = True

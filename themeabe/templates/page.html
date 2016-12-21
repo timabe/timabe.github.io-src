@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ page.title }}{% endblock %}
+{% block title %}{{ SITENAME }} - {{ page.title }}{% endblock %}
 {% block robots %}
 {% if page.robots %}{{ page.robots }}{% else %}index,follow{% endif %}
 {% endblock %}

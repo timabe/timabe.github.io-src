@@ -18,7 +18,6 @@ SOCIAL = (('twitter', 'https://twitter.com/timabe'),
 
 TWITTER_USERNAME = "timabe"
 
-
 OUTPUT_PATH = "../blog_output/"
 THEME = "themeabe"
 

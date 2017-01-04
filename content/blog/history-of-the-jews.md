@@ -1,6 +1,7 @@
-Title: History of The Jews (Part 1 of 2)
+Title: History of The Jews: A lengthy review of a lenghty book.
 Slug: history-of-the-jews
 Date: 2016-01-26 21:56:40
+Author: Tim
 Tags: books
 Category: blog
 Lang: en

@@ -8,7 +8,7 @@ SITENAME = u'tim abraham'
 PATH = 'content'
 
 TIMEZONE = 'America/Los_Angeles'
-DEFAULT_DATE_FORMAT = ('%d %B %Y')
+DEFAULT_DATE_FORMAT = ('%B %Y')
 DEFAULT_LANG = u'en'
 
 # Social widget

@@ -1,7 +1,8 @@
 Title: Nassim Taleb
 Slug: nnt
 Date: 2016-03-22 21:56:40
-Tags: books
+Author: Tim
+Tags: books, essays
 Category: blog
 Lang: en
 Summary: What my favorite author writes about.

@@ -13,7 +13,7 @@ from pelicanconf import *
 SITEURL = 'http://timabe.me'
 RELATIVE_URLS = True
 
-DELETE_OUTPUT_DIRECTORY = True
+DELETE_OUTPUT_DIRECTORY = False
 
 # Following items are often useful when publishing
 

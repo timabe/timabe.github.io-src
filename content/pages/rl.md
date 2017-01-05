@@ -1,7 +1,7 @@
 Title: reading list
 Slug: kit-list
 Tags:
-Category:
+Category: reading list
 Author:
 Lang:
 Summary:

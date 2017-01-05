@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+MARKDOWN = {
+        'extension_configs': {
+            'markdown.extensions.codehilite': {'css_class': 'codehilite'}
+        }
+    }
+
 AUTHOR = u'Tim Abraham'
 SITENAME = u'tim abraham'
-
 PATH = 'content'
 
 TIMEZONE = 'America/Los_Angeles'
@@ -34,4 +39,3 @@ EXTRA_PATH_METADATA = {
 MENUITEMS = [('pies', 'https://pies.timabe.me/')]
 
 DEFAULT_PAGINATION = False
-

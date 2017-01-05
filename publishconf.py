@@ -13,9 +13,9 @@ from pelicanconf import *
 SITEURL = 'http://timabe.me'
 RELATIVE_URLS = True
 
-DELETE_OUTPUT_DIRECTORY = False
+DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 
-#DISQUS_SITENAME = ""
+DISQUS_SITENAME = "timabe.me"
 GOOGLE_ANALYTICS = 'UA-73240359-1'

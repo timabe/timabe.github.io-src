@@ -1,9 +1,7 @@
 Title: Antifragile
 Slug: antifragile
 Date: 2016-04-02 21:56:40
-Author: Tim
 Tags: books
-Category: blog
 Lang: en
 Summary: More wisdom here than anywhere
 

@@ -11,11 +11,11 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://timabe.me'
-RELATIVE_URLS = True
+RELATIVE_URLS = False
 
-DELETE_OUTPUT_DIRECTORY = True
+DELETE_OUTPUT_DIRECTORY = False
 
 # Following items are often useful when publishing
 
-DISQUS_SITENAME = "timabe.me"
+DISQUS_SITENAME = "timabe-me"
 GOOGLE_ANALYTICS = 'UA-73240359-1'

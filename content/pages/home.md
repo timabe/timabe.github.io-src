@@ -1,6 +1,5 @@
 Title: about
-Slug: home
-URL:
+url:
 save_as: index.html
 
 Hello and welcome!

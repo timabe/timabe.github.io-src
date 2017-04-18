@@ -4,26 +4,26 @@ Date: 2017-04-17
 Tags: math, probability, learning
 Lang: en
 
-I've recently had the itch to break out some textbooks and do a little math. Don't ask me where that desire comes from, but I find working on math problems fun. A few years ago I bought a well regarded probability textbook, which I learned about through an Amazon review by my intellectual hero, Nassim Taleb ([here's the review](https://www.amazon.com/review/RBJX110Q38V9V)). Since then it has mainly been sitting on my book shelf, but occasionally I leaf through it and try to refresh my memory on some concept or learn a new one.
+I've recently had the itch to break out some textbooks and do a little math. Don't ask me where that desire comes from, but I find working on math problems fun. A few years ago I bought a probability textbook, which I learned about through an Amazon review by my intellectual hero, Nassim Taleb ([here's the review](https://www.amazon.com/review/RBJX110Q38V9V)). Since then it has mainly been sitting on my book shelf, but occasionally I leaf through it and try to refresh my memory on some concept or learn a new one.
 
-In the book, I came across a very famous problem in Probability called [The Gambler's Ruin](https://en.wikipedia.org/wiki/Gambler%27s_ruin). In the problem, we have the following scenario:
+In the book, I came across a very famous problem in probability called [The Gambler's Ruin](https://en.wikipedia.org/wiki/Gambler%27s_ruin). In the problem, we have the following scenario:
 
-> Two players, Player A and Player B, play a series of consequitive gambling games until one of the players loses all their money. Player A starts with a dollars and Player B starts with b dollars and the loser pays one dollar to the winner in each game. Player A's chance of winning a game is $p$ and Player B's chance is $q$ (where $p+q=1$). What is the probability, at any level of wealth Player A is at, that he will be ruined?
+> Two players, Player A and Player B, play a series of consecutive gambling games until one of the players loses all their money. Player A starts with a dollars and Player B starts with b dollars and the loser pays one dollar to the winner in each game. Player A's chance of winning a game is $p$ and Player B's chance is $q$ (where $p+q=1$). What is the probability, at any level of wealth Player A is at, that he will be ruined?
 
-It's not hard to find a solution for this problem online. I even found an okay explanation of it by the [author of my textbook on youtube](https://www.youtube.com/watch?v=Rr2iSKlengg&t). However, I was a bit rusty on some of my math and found all the answers out there to be a bit hand wavy in their derivations. They go through the most confusing steps with no explanation, which was frustrating for me. I like simple, straightforward explanations. And since I couldn't find a single one on the internet, I decided to contribute it myself. So let's walk through the problem, very slowly, step by step. If you follow me with a pencil and paper I guarantee you'll be able to understand the math.
+It's not hard to find a solution for this problem online. I even found an okay explanation of it by the [author of my textbook on YouTube](https://www.youtube.com/watch?v=Rr2iSKlengg&t). However, I was a bit rusty on some of my math and found all the answers out there to be a bit hand wavy in their derivations. They go through the most confusing steps with no explanation, which was frustrating for me. I like simple, straightforward explanations. And since I couldn't find a single one on the Internet, I decided to contribute it myself. So let's walk through the problem, very slowly, step by step. If you follow me with a pencil and paper I guarantee you'll be able to understand the math. My goal is to be as comprehensive and thorough as possible.
 
 ### The Setup
-How do you even start with this problem? The question above asks "What is the probability, at any level of wealth Player A is at, that he will be ruined?". So let's call this $P_n$.  $P_n$ is the probability that when Player A has $n, he will ultimately be ruined. How does Player A get to a position where he has $n? Well there are two ways he can get there: He can either lose a game when he has $n + 1, or he can win a game when he has $n - 1. We know the probability of him winning and losing a game is $p$ and $q$, respectively, and we know these are mutually exlusive events. Therefore, we can write out the equation for $P_n$ as \begin{equation} P_n=pP_{n+1}+qP_{n-1} \end{equation}
+How do you even start with this problem? The question above asks "What is the probability, at any level of wealth Player A is at, that he will be ruined?". So let's call this $P_n$.  $P_n$ is the probability that when Player A has n dollars, he will ultimately be ruined. How does Player A get to a position where he has n dollars? Well there are two ways he can get there: He can either lose a game when he has n + 1, or he can win a game when he has n - 1. We know the probability of him winning and losing a game is $p$ and $q$, respectively, and we know these are mutually exclusive events. Therefore, we can write out the equation for $P_n$ as \begin{equation} P_n=pP_{n+1}+qP_{n-1} \end{equation}
 
-We get there by applying the theorem of total probability if you want to start at first principles, but I think the equation makes sense without any more set up. So we have our equation to solve.
+We get there by applying the theorem of total probability if you want to start at first principles, but I think the equation makes sense without any more set up. So we have our equation to solve!
 
 ### Initial conditions
 Two initial conditions can help us solve the problem. $$P_0=1$$
-This says that when Player A has $0, he is ruined. When Player A runs out of money, he can no longer play the game, so he's stuck in this state. His probability of ruin is therefore 0, since he has no chance of getting back in the action. $$P_{a+b}=0$$ This says the opposite. If Player A has won both his $a and Player B's $b, he has won all the dollars. Player B can no longer play, so the game is over and Player A has no chance of being ruined.
+This says that when Player A has $0, he is ruined. When Player A runs out of money, he can no longer play the game, so he's stuck in this state. His probability of ruin is therefore 1, since he has no chance of getting back in the action. $$P_{a+b}=0$$ This says the opposite. If Player A has won both his $a and Player B's $b, he has won all the dollars. Player B can no longer play, so the game is over and Player A has no chance of being ruined.
 
 ### Solving a difference equation.
 
-Equation $(1)$ is known as a difference equation. I haven't solved too many of them, or at least been aware that I was, and maybe you're in the same boat. We can rewrite equation $(1) as \begin{equation} p(P_{n+1}-P_n) = q(P_n-P_{n-1})\end{equation}
+Equation $(1)$ is known as a difference equation. I haven't solved too many of them, or at least been aware that I was, and maybe you're in the same boat. We can rewrite equation $(1)$ as \begin{equation} p(P_{n+1}-P_n) = q(P_n-P_{n-1})\end{equation}
 or $$P_{n+1}-P_n=\frac{q}{p}(P_n-P_{n-1})$$.
 
 Hopefully you're still with me. All we did to get $(2)$ was use the fact that $p+q=1$ and multiply the left hand side $P_n$ by $(p+q)$. The next part of the solution I got stuck on a bit. In most of the derivations I saw, we go from the above equation, to \begin{equation} P_{n+1}-P_n=\frac{q}{p}(P_n-P_{n-1})=(\frac{q}{p})^n(P_1-1) \end{equation}.
@@ -93,6 +93,15 @@ $$P_n=\frac{(\frac{q}{p})^n - (\frac{q}{p})^{a+b}}{1-(\frac{q}{p})^{a+b}}$$
 Which is our answer! That's quite a bit of math, but laid out step by step with explanations it's very straightforward. Now that we've got our solution, let's build some intuition around that last equation and simulate some gambling scenarios.
 
 ## Intuition and moral of The Gambler's Ruin
-TBD
+
+The earliest mention of this problem was in a letter from Blaise Pascal to Pierre Fermat in 1656. That was obviously pre-Vegas. Today, the problem is often used as a cautionary tale for anyone naive enough to think they can beat the house on their next trip to Vegas. As we'll see with some simulations, as long as the odds are not in your favor you basically will always go broke. Even if you're playing a game where you have a 49.9% chance of winning, your probability of being ruined is always going to look pretty bad. In fact, if you're playing against the casino, and not Player B (who has less money than the casino), your probability of ruin is basically 1 unless you're incredibly rich.
+
+So moral of the story: If you're playing a gambling game like the one described in this problem, quit while (and if) you're ahead. Roulette is probably the most relevant game to this problem. Roulette has nearly symetric payout odds, with the odds just slightly tipped towards the house. If you go to Vegas and play one dollar roulette, you will eventually go broke. The same is true for any game in the casino, except for poker.
+
+So why don't casinos make unlimited money? Reducing real life problems to simple probability math problems is a concept coined by Nassim Taleb as the [Ludic Fallacy](https://en.wikipedia.org/wiki/Ludic_fallacy. The Ludic (from ludus, which is Latin for games) Fallacy warns against using the use of games to predict real life situations. One of my favorite parts of The Black Swan was the chapter on the Ludic Fallacy. In that chapter, Taleb writes about how probability like the Gambler's Ruin should never be applied to complex domains and should be relegated only to things like casinos. He mentions that he lectured a team of executives from a casino on this, telling them that their business was really the only place where one could apply vanilla probability and statistics. It turned out, however, that even the casino could not just apply the learnings from the Gambler's Ruin and go home happy. The casino he was lecturing had suffered major losses that year from completely unpredictable outcomes - most notably that a tiger in one of their performances mauled a performer on stage causing a lot of unforseen damage. So even a domain that seems ludic is not!
+
+
+
+
 ## Simulating
 TBD

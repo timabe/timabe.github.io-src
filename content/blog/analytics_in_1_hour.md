@@ -40,7 +40,7 @@ Since pie is way more delicious than widgets, let’s imagine you’ve just star
 minimum, the success of your business will depend on
 
 1.  Your ability to get potential pie consumers
-1.  Your ability to sell pies to those consumers
+2.  Your ability to sell pies to those consumers
 
 ![](https://cdn-images-1.medium.com/max/800/1*yPRxRb5UghNa-EZmeuuteg.png)
 
@@ -49,8 +49,8 @@ If you can reliably grow both 1 and 2 you won’t have too much else to worry
 about. You decide based on that to track
 
 1.  New user registrations
-1.  Pie sales
-1.  Repeat usage
+2.  Pie sales
+3.  Repeat usage
 
 You know you can derive a few more interesting metrics just based off of user
 registration and pie sale data, but for now you’re cool with these big 3 high

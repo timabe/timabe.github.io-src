@@ -1,0 +1,98 @@
+Title: The Gambler's Ruin: A simple explanation and derivation
+Slug: gamblers_ruin
+Date: 2017-04-17
+Tags: math, probability, learning
+Lang: en
+
+I've recently had the itch to break out some textbooks and do a little math. Don't ask me where that desire comes from, but I find working on math problems fun. A few years ago I bought a well regarded probability textbook, which I learned about through an Amazon review by my intellectual hero, Nassim Taleb ([here's the review](https://www.amazon.com/review/RBJX110Q38V9V)). Since then it has mainly been sitting on my book shelf, but occasionally I leaf through it and try to refresh my memory on some concept or learn a new one.
+
+In the book, I came across a very famous problem in Probability called [The Gambler's Ruin](https://en.wikipedia.org/wiki/Gambler%27s_ruin). In the problem, we have the following scenario:
+
+> Two players, Player A and Player B, play a series of consequitive gambling games until one of the players loses all their money. Player A starts with a dollars and Player B starts with b dollars and the loser pays one dollar to the winner in each game. Player A's chance of winning a game is $p$ and Player B's chance is $q$ (where $p+q=1$). What is the probability, at any level of wealth Player A is at, that he will be ruined?
+
+It's not hard to find a solution for this problem online. I even found an okay explanation of it by the [author of my textbook on youtube](https://www.youtube.com/watch?v=Rr2iSKlengg&t). However, I was a bit rusty on some of my math and found all the answers out there to be a bit hand wavy in their derivations. They go through the most confusing steps with no explanation, which was frustrating for me. I like simple, straightforward explanations. And since I couldn't find a single one on the internet, I decided to contribute it myself. So let's walk through the problem, very slowly, step by step. If you follow me with a pencil and paper I guarantee you'll be able to understand the math.
+
+### The Setup
+How do you even start with this problem? The question above asks "What is the probability, at any level of wealth Player A is at, that he will be ruined?". So let's call this $P_n$.  $P_n$ is the probability that when Player A has $n, he will ultimately be ruined. How does Player A get to a position where he has $n? Well there are two ways he can get there: He can either lose a game when he has $n + 1, or he can win a game when he has $n - 1. We know the probability of him winning and losing a game is $p$ and $q$, respectively, and we know these are mutually exlusive events. Therefore, we can write out the equation for $P_n$ as \begin{equation} P_n=pP_{n+1}+qP_{n-1} \end{equation}
+
+We get there by applying the theorem of total probability if you want to start at first principles, but I think the equation makes sense without any more set up. So we have our equation to solve.
+
+### Initial conditions
+Two initial conditions can help us solve the problem. $$P_0=1$$
+This says that when Player A has $0, he is ruined. When Player A runs out of money, he can no longer play the game, so he's stuck in this state. His probability of ruin is therefore 0, since he has no chance of getting back in the action. $$P_{a+b}=0$$ This says the opposite. If Player A has won both his $a and Player B's $b, he has won all the dollars. Player B can no longer play, so the game is over and Player A has no chance of being ruined.
+
+### Solving a difference equation.
+
+Equation $(1)$ is known as a difference equation. I haven't solved too many of them, or at least been aware that I was, and maybe you're in the same boat. We can rewrite equation $(1) as \begin{equation} p(P_{n+1}-P_n) = q(P_n-P_{n-1})\end{equation}
+or $$P_{n+1}-P_n=\frac{q}{p}(P_n-P_{n-1})$$.
+
+Hopefully you're still with me. All we did to get $(2)$ was use the fact that $p+q=1$ and multiply the left hand side $P_n$ by $(p+q)$. The next part of the solution I got stuck on a bit. In most of the derivations I saw, we go from the above equation, to \begin{equation} P_{n+1}-P_n=\frac{q}{p}(P_n-P_{n-1})=(\frac{q}{p})^n(P_1-1) \end{equation}.
+
+Huh? How'd we get there? Let me show you. Let's try plugging in some numbers. First let's say $n=1$. Plug that into $(3)$
+
+$$P_2-P_1=\frac{q}{p}(P_1-P_0)$$
+But we know from our initial conditions that $P_0=1$, so:
+$$P_2-P_1=\frac{q}{p}(P_1-1)$$
+
+Great, now let's try for $n=2$. Plugged into (3) gives
+$$P_3-P_2=\frac{q}{p}(P_2-P1)$$
+
+You can see a pattern emerging here. But you can also see that the $(P_2-P_1)$ in the above equation was already solved for in the $n=1$ scenario. So we can simply plug that in.
+$$P_3-P_2=\frac{q}{p}\frac{q}{p}(P_1-1)=(\frac{q}{p})^2(P_1-1)$$
+
+Now consider the general case with $n$. Feel free to try with $n=3$ if you haven't gotten the pattern. If you keep iterating, you'll continue to wind up with something that equals $(\frac{q}{p})^n(P_1-1)$.
+
+### Fun with Geometric Sequences
+
+Let's take another route now. We've simplified $P_{n+1}-P_n$, but what about when we're not just looking at a difference of 1 game? Let's exploit our other initial condition of $P_{a+b}=1$ and solve for $P_{a+b}-P_n$. Again, let's plug in some numbers. Let's say $n=1$ and $a+b=3$. Now we have $P_3-P_1$. From the work we did above we know $P_3-P_2$ and $P_2-P_1$, and adding those together gives us $P_3-P_1$. We could also write that as
+
+$$P_3-P_1=$\sum\limits_{k=1}^{2}P_{k+1}-P_k$$
+
+Or more generally
+$$P_{a+b}-P_{n}=$\sum\limits_{k=n}^{a+b-1}P_{k+1}-P_k$$.
+
+We can plug in our solution for $P_{n+1}-P_n$ from $(3)$ into the $P_{k+1}-P_k$ and get \begin{equation} =\sum\limits_{k=n}^{a+b-1}(\frac{q}{p})^k(P_1-1) \end{equation}
+
+Now we'd like to get rid of that summation term. This is a geometric series, so there's a very cool trick we can perform here to get find what that summation is equal to. I had completely forgotten about learning this trick in grad school. Like I said, my math is very rusty and I'm sure yours is too. So here's how you solve for it. Let's call the sequence $\sum\limits_{k=n}^{a+b-1}(\frac{q}{p})^k=S_k$. Okay, let's start expanding it out:
+
+\begin{equation} S_k=\frac{q}{p}^n+\frac{q}{p}^{n+1}+...+\frac{q}{p}^{a+b-1} \end{equation}
+
+Now the trick, where we multiply each side by $\frac{q}{p}$.
+
+\begin{equation} \frac{q}{p}S_k=\frac{q}{p}^{n+1}+\frac{q}{p}^{n+2}+...+\frac{q}{p}^{a+b} \end{equation}
+
+And let's subtract $(6)$ from $(5)$. Almost all the terms on the right hand side cancel out.
+
+$$ S_k - \frac{q}{p}S_k =\frac{q}{p}^n - \frac{q}{p}^{a+b} $$
+
+$$ (1-\frac{q}{p})S_k =\frac{q}{p}^n - \frac{q}{p}^{a+b} $$
+
+$$ S_k =\frac{\frac{q}{p}^n - \frac{q}{p}^{a+b}}{1-\frac{q}{p}} $$
+
+Very cool, right? We can plug that back in for the summation in $(4)$ and get
+
+\begin{equation} P_{a+b}-P_{n}=(P_1-1)\frac{\frac{q}{p}^n - \frac{q}{p}^{a+b}}{1-\frac{q}{p}} \end{equation}
+
+### Home stretch!
+We're basically home free now. Recall that $P_{a+b}=0$ and then multiply both sides by $-1$ to get
+
+\begin{equation} P_n=(1-P_1)\frac{\frac{q}{p}^n - \frac{q}{p}^{a+b}}{1-\frac{q}{p}} \end{equation}
+
+
+We've almost written this in terms of only $n,a, and b$, but we still don't know what $(1-P_1)$ is. We can take care of that by using the other initial condition again $P_0=1$.
+
+\begin{equation} P_0=(1-P_1)\frac{\frac{q}{p}^0 - \frac{q}{p}^{a+b}}{1-\frac{q}{p}}=1 \end{equation}
+
+We can now divide $(8) by 1.
+
+$$P_n=\frac{(1-P_1)}{(1-P_1)}\frac{(\frac{q}{p}^n - \frac{q}{p}^{a+b})(1-\frac{q}{p})}{(\frac{q}{p}^0 - \frac{q}{p}^{a+b})(1-\frac{q}{p})}$$
+
+Which you can see a lot can be cancelled out from. Also, $\frac{q}{p}^0=1$. That gives us
+$$P_n=\frac{(\frac{q}{p})^n - (\frac{q}{p})^{a+b}}{1-(\frac{q}{p})^{a+b}}$$
+
+Which is our answer! That's quite a bit of math, but laid out step by step with explanations it's very straightforward. Now that we've got our solution, let's build some intuition around that last equation and simulate some gambling scenarios.
+
+## Intuition and moral of The Gambler's Ruin
+TBD
+## Simulating
+TBD
